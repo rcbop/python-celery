@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Disney Characters Information</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 20px;
+        }
+
+        h1 {
+            color: #1a237e;
+        }
+
+        img {
+            max-width: 300px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
+
+        h2 {
+            color: #1a237e;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li {
+            margin-bottom: 5px;
+        }
+
+        a {
+            color: #00695c;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+
+    {% for character in characters %}
+        <div style="border: 1px solid #ddd; padding: 10px; margin-bottom: 20px;">
+
+            <h1>{{ character.name }}</h1>
+
+            <div>
+                <img src="{{ character.imageUrl }}" alt="{{ character.name }}">
+            </div>
+
+            <h2>Films</h2>
+            <ul>
+                {% for film in character.films %}
+                    <li>{{ film }}</li>
+                {% endfor %}
+            </ul>
+
+            <h2>Short Films</h2>
+            <ul>
+                {% for shortFilm in character.shortFilms %}
+                    <li>{{ shortFilm }}</li>
+                {% endfor %}
+            </ul>
+
+            <h2>TV Shows</h2>
+            <ul>
+                {% for tvShow in character.tvShows %}
+                    <li>{{ tvShow }}</li>
+                {% endfor %}
+            </ul>
+
+            <h2>Video Games</h2>
+            <ul>
+                {% for videoGame in character.videoGames %}
+                    <li>{{ videoGame }}</li>
+                {% endfor %}
+            </ul>
+
+            <h2>Park Attractions</h2>
+            <ul>
+                {% for attraction in character.parkAttractions %}
+                    <li>{{ attraction }}</li>
+                {% endfor %}
+            </ul>
+
+            <h2>Allies</h2>
+            <ul>
+                {% if character.allies %}
+                    {% for ally in character.allies %}
+                        <li>{{ ally }}</li>
+                    {% endfor %}
+                {% else %}
+                    <li>No allies listed</li>
+                {% endif %}
+            </ul>
+
+            <h2>Enemies</h2>
+            <ul>
+                {% if character.enemies %}
+                    {% for enemy in character.enemies %}
+                        <li>{{ enemy }}</li>
+                    {% endfor %}
+                {% else %}
+                    <li>No enemies listed</li>
+                {% endif %}
+            </ul>
+
+            <p>For more information, visit: <a href="{{ character.sourceUrl }}">{{ character.sourceUrl }}</a></p>
+
+            <p>Character URL: <a href="{{ character.url }}">{{ character.url }}</a></p>
+
+            <p>Created At: {{ character.createdAt }}</p>
+            <p>Updated At: {{ character.updatedAt }}</p>
+
+        </div>
+    {% endfor %}
+
+</body>
+</html>
