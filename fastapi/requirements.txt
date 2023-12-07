@@ -1,5 +1,0 @@
-jinja2
-weasyprint
-celery
-requests
-fastapi

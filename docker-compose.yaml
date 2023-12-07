@@ -30,6 +30,13 @@ services:
     depends_on:
       - rabbitmq
 
+  cleaner:
+    build:
+      context: .
+      dockerfile: cleaner/Dockerfile
+    volumes:
+      - reports:/app/reports
+
   rabbitmq:
     image: "rabbitmq:3.8"
     ports:

@@ -8,21 +8,25 @@
         body {
             font-family: 'Arial', sans-serif;
             margin: 20px;
+            background-color: #f4f4f4;
         }
 
-        h1 {
+        .character-container {
+            border: 1px solid #ddd;
+            padding: 20px;
+            margin-bottom: 20px;
+            background-color: #fff;
+        }
+
+        h1, h2 {
             color: #1a237e;
         }
 
         img {
-            max-width: 300px;
+            max-width: 100%;
             border: 1px solid #ddd;
             border-radius: 5px;
             margin-bottom: 10px;
-        }
-
-        h2 {
-            color: #1a237e;
         }
 
         ul {
@@ -37,13 +41,27 @@
         a {
             color: #00695c;
             text-decoration: none;
+            font-weight: bold;
+        }
+
+        p {
+            margin: 5px 0;
+        }
+
+        .timestamp {
+            color: #757575;
+        }
+
+        .no-list {
+            color: #757575;
+            font-style: italic;
         }
     </style>
 </head>
 <body>
 
     {% for character in characters %}
-        <div style="border: 1px solid #ddd; padding: 10px; margin-bottom: 20px;">
+        <div class="character-container">
 
             <h1>{{ character.name }}</h1>
 
@@ -93,7 +111,7 @@
                         <li>{{ ally }}</li>
                     {% endfor %}
                 {% else %}
-                    <li>No allies listed</li>
+                    <li class="no-list">No allies listed</li>
                 {% endif %}
             </ul>
 
@@ -104,16 +122,16 @@
                         <li>{{ enemy }}</li>
                     {% endfor %}
                 {% else %}
-                    <li>No enemies listed</li>
+                    <li class="no-list">No enemies listed</li>
                 {% endif %}
             </ul>
 
-            <p>For more information, visit: <a href="{{ character.sourceUrl }}">{{ character.sourceUrl }}</a></p>
+            <p>For more information, visit: <a href="{{ character.sourceUrl }}" target="_blank">{{ character.sourceUrl }}</a></p>
 
-            <p>Character URL: <a href="{{ character.url }}">{{ character.url }}</a></p>
+            <p>Character URL: <a href="{{ character.url }}" target="_blank">{{ character.url }}</a></p>
 
-            <p>Created At: {{ character.createdAt }}</p>
-            <p>Updated At: {{ character.updatedAt }}</p>
+            <p class="timestamp">Created At: {{ character.createdAt }}</p>
+            <p class="timestamp">Updated At: {{ character.updatedAt }}</p>
 
         </div>
     {% endfor %}
